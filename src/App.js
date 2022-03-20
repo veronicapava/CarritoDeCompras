@@ -1,8 +1,11 @@
 import { Component } from 'react'
 import Productos from './components/Productos'
+import Layaout from './components/Layaout'
+import Title from './components/Title'
+import NavBar from './components/NavBar'
 
 class App extends Component {
-  state = {
+  state = { //Nos traemos los productos como estado
     productos: [
       { name: 'Tomates', price: 2000, img: '/productos/tomate.jpg' },
       { name: 'Arbejas', price: 2500, img: '/productos/arbejas.jpg' },
@@ -13,11 +16,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Bienvenidos</h1>
-        <Productos
-          agregarAlCarro={() => console.log('No hace nada')}
-          productos={this.state.productos}
-        />
+        <NavBar />
+        <Layaout>
+          <Title />
+          <Productos
+            agregarAlCarro={() => console.log('No hace nada')} //Agregamos al carrito los productos
+            productos={this.state.productos}
+          />
+        </Layaout>
+
       </div>
     )
   }
