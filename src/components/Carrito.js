@@ -20,7 +20,7 @@ const styles = {
 
 class Carrito extends Component {
     render() {
-        const { carro } = this.props // nos traemos la propiedad de Carrito
+        const { carro, esCarroVisible, mostrarCarro } = this.props // nos traemos la propiedad de Carrito
         const cantidad = carro.reduce((acc, el) => acc + el.cantidad, 0) //Vamos aumentando la cantidad
         return (
             <div>
@@ -31,12 +31,10 @@ class Carrito extends Component {
                             : null //Si la cantidad es 0 no mostramos la burbuja
                     }
                 </span>
-                <button style={styles.carrito}>
+                <button onClick={mostrarCarro} style={styles.carrito}>
                     Carrito
                 </button>
-                <DetallesCarrito
-                    carro={carro}
-                />
+                {esCarroVisible ? <DetallesCarrito carro={carro} /> : null}
             </div>
         )
     }

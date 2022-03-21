@@ -12,7 +12,8 @@ class App extends Component {
       { name: 'Arbejas', price: 2500, img: '/productos/arbejas.jpg' },
       { name: 'Lechuga', price: 1000, img: '/productos/lechuga.jpg' }
     ],
-    carro: []
+    carro: [],
+    esCarroVisible: false
   }
 
   //Metodo para agregar producto al carrito
@@ -36,10 +37,21 @@ class App extends Component {
     })
   }
 
+  mostrarCarro = () => {
+    if (!this.state.carro.length) {
+      return
+    }
+    this.setState({ esCarroVisible: !this.state.esCarroVisible })
+  }
   render() {
+    const { esCarroVisible } = this.state
     return (
       <div>
-        <NavBar carro={this.state.carro} />
+        <NavBar
+          carro={this.state.carro}
+          esCarroVisible={esCarroVisible}
+          mostrarCarro={this.mostrarCarro}
+        />
         <Layaout>
           <Title />
           <Productos
